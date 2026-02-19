@@ -1,17 +1,12 @@
-# USER.md - About Your Human
+# USER.md
 
-_Learn about the person you're helping. Update this as you go._
-
-- **Name:**
-- **What to call them:**
-- **Pronouns:** _(optional)_
-- **Timezone:**
-- **Notes:**
+- **Name:** Taeyoon Kim
+- **What to call them:** 사용자
+- **Timezone:** Asia/Seoul (KST, UTC+9)
+- **Telegram:** @claude1234500 (Chat ID: 8272641961)
 
 ## Context
 
-_(What do they care about? What projects are they working on? What annoys them? What makes them laugh? Build this over time.)_
-
----
-
-The more you know, the better you can help. But remember — you're learning about a person, not building a dossier. Respect the difference.
+- 개발자로서 IT/기술 뉴스, 한국 금융 시장, 암호화폐에 관심
+- 매일 아침 종합 브리핑과 실시간 개별 조회를 사용
+- 한국어로 모든 정보를 받기를 선호

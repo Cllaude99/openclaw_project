@@ -1,5 +1,10 @@
 # HEARTBEAT.md
 
-# Keep this file empty (or with only comments) to skip heartbeat API calls.
+# 현재 자동 크론 스케줄이 openclaw.json에 설정되어 있습니다.
+# 추가 heartbeat 작업이 필요하면 아래에 작성하세요.
 
-# Add tasks below when you want the agent to check something periodically.
+# 등록된 크론 작업:
+# - 매일 07:00 KST: 아침 종합 브리핑 (날씨+금융+코인+뉴스)
+# - 매일 12:30 KST: 점심 IT/국내 뉴스
+# - 평일 18:00 KST: 장 마감 금융+코인 요약
+# - 월요일 09:00 KST: IT 기업 채용 정보
