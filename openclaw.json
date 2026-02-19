@@ -1,0 +1,54 @@
+{
+  "name": "openclaw-kr-assistant",
+  "description": "개인 AI 뉴스/정보 큐레이션 봇 — 매일 아침 브리핑, 실시간 조회",
+  "version": "1.0.0",
+  "model": "claude-sonnet-4-5",
+  "channel": {
+    "type": "telegram",
+    "textChunkLimit": 4000
+  },
+  "soul": "SOUL.md",
+  "skills": [
+    "skills/weather-kr",
+    "skills/finance-kr",
+    "skills/crypto-kr",
+    "skills/tech-news",
+    "skills/news-summary",
+    "skills/jobs-kr",
+    "skills/daily-digest"
+  ],
+  "cron": [
+    {
+      "name": "morning-briefing",
+      "schedule": "0 22 * * *",
+      "timezone": "UTC",
+      "skill": "daily-digest",
+      "message": "아침 브리핑을 시작해주세요. 날씨, 금융, 코인, 뉴스를 종합해서 보내주세요.",
+      "comment": "KST 07:00 = UTC 22:00 (전날)"
+    },
+    {
+      "name": "lunch-news",
+      "schedule": "30 3 * * *",
+      "timezone": "UTC",
+      "skill": "daily-digest",
+      "message": "점심 뉴스를 보내주세요. IT 기술 뉴스와 국내 주요 뉴스를 중심으로 요약해주세요.",
+      "comment": "KST 12:30 = UTC 03:30"
+    },
+    {
+      "name": "market-close",
+      "schedule": "0 9 * * 1-5",
+      "timezone": "UTC",
+      "skill": "daily-digest",
+      "message": "장 마감 요약을 보내주세요. 환율, KOSPI/KOSDAQ, 암호화폐 시세를 정리해주세요.",
+      "comment": "KST 18:00 = UTC 09:00, 평일만"
+    },
+    {
+      "name": "weekly-jobs",
+      "schedule": "0 0 * * 1",
+      "timezone": "UTC",
+      "skill": "jobs-kr",
+      "message": "이번 주 IT 기업 채용 정보를 정리해서 보내주세요.",
+      "comment": "KST 월요일 09:00 = UTC 월요일 00:00"
+    }
+  ]
+}
