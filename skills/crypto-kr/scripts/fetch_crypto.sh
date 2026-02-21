@@ -7,7 +7,7 @@ set -euo pipefail
 # ===================================================
 
 # 기본 코인 목록
-SYMBOLS="${CRYPTO_SYMBOLS:-BTC,ETH,XRP,SOL}"
+SYMBOLS="${CRYPTO_SYMBOLS:-BTC,ETH,XRP,SOL,DOGE,ADA,AVAX,DOT,LINK,POL}"
 
 # 코인 한국어 이름 매핑
 coin_name() {
@@ -20,6 +20,7 @@ coin_name() {
     ADA) echo "에이다";;
     AVAX) echo "아발란체";;
     DOT) echo "폴카닷";;
+    POL) echo "폴리곤";;
     MATIC) echo "폴리곤";;
     LINK) echo "체인링크";;
     *) echo "$1";;
