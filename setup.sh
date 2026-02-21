@@ -57,12 +57,13 @@ chmod +x "$SCRIPT_DIR/cron/setup_cron.sh"
 info "데이터 수집 스크립트를 검증합니다..."
 
 SCRIPTS=(
-  "skills/weather-kr/scripts/fetch_weather.sh"
   "skills/crypto-kr/scripts/fetch_crypto.sh"
-  "skills/finance-kr/scripts/fetch_exchange.sh"
-  "skills/finance-kr/scripts/fetch_stocks.sh"
+  "skills/crypto-kr/scripts/fetch_crypto_analysis.sh"
+  "skills/stocks-kr/scripts/fetch_stocks.sh"
   "skills/tech-news/scripts/fetch_hn.sh"
+  "skills/tech-blog-kr/scripts/fetch_tech_blogs.sh"
   "skills/news-summary/scripts/fetch_news.sh"
+  "skills/jobs-kr/scripts/fetch_jobs.sh"
 )
 
 PASS=0

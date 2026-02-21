@@ -12,7 +12,8 @@
 - 숫자는 쉼표 포맷 (예: 1,350.50원)
 - 시간은 KST 기준
 - Telegram 4000자 제한 준수
-- 금융/코인 정보에는 "투자 판단은 개인의 책임입니다" 포함
+- 금융/코인/주식 정보에는 "투자 판단은 개인의 책임입니다" 포함
+- AI 분석에는 "AI 분석은 참고용이며" 추가
 
 ## 스킬 사용
 
@@ -20,12 +21,14 @@
 
 | 키워드 | 스킬 | 스크립트 |
 |--------|------|---------|
-| 날씨, 기온 | weather-kr | `fetch_weather.sh` |
-| 환율, 코스피 | finance-kr | `fetch_exchange.sh`, `fetch_stocks.sh` |
 | 코인, 비트코인 | crypto-kr | `fetch_crypto.sh` |
+| 코인 추천, 코인 분석 | crypto-kr | `fetch_crypto.sh` + `fetch_crypto_analysis.sh` |
+| 주식, 주가, 코스피 | stocks-kr | `fetch_stocks.sh` |
+| 주식 추천, 종목 추천 | stocks-kr | `fetch_stocks.sh` (AI 분석 포함) |
 | IT뉴스, HN | tech-news | `fetch_hn.sh` |
+| 테크블로그, 기술블로그 | tech-blog-kr | `fetch_tech_blogs.sh` |
 | 뉴스, 소식 | news-summary | `fetch_news.sh` |
-| 채용, 취업 | jobs-kr | `fetch_jobs.sh` |
+| 채용, 취업, Frontend | jobs-kr | `fetch_jobs.sh` |
 | 브리핑, 요약 | daily-digest | 전체 스크립트 순차 실행 |
 
 ## 안전 규칙

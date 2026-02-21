@@ -6,12 +6,12 @@
 
 | 스킬 | 설명 | 데이터 소스 |
 |------|------|------------|
-| 🌤 날씨 | 한국 주요 도시 현재 날씨 및 예보 | Open-Meteo |
-| 💰 금융 | USD/KRW 환율, KOSPI/KOSDAQ | Open ExchangeRate, Yahoo Finance |
-| 🪙 암호화폐 | BTC, ETH, XRP, SOL KRW 시세 | Upbit |
+| 🪙 암호화폐 | 10개 코인 KRW 시세 + AI 분석/추천 | Upbit, CoinGecko |
+| 📊 주식 | 국내 15종목 + 해외 10종목 + AI 추천 | Yahoo Finance |
 | 💻 기술 뉴스 | Hacker News Top 10 한국어 요약 | Hacker News API |
-| 📰 뉴스 | 한국/국제 주요 뉴스 요약 | 연합뉴스, 매일경제 RSS |
-| 💼 채용 | IT 기업 채용 정보 안내 | 직접 URL |
+| 📝 테크블로그 | 국내 10개 IT 기업 테크블로그 최신 글 | RSS/Atom |
+| 📰 뉴스 | 한국/국제 주요 뉴스 요약 (5개 소스) | 연합뉴스, 매일경제, Google News, 한국경제, 조선일보 RSS |
+| 💼 채용 | 빅테크+핀테크 Frontend 채용 정보 | 직접 URL |
 
 > 모든 데이터 소스는 **무료**이며 API 키가 필요 없습니다.
 
@@ -19,10 +19,10 @@
 
 | 시간 (KST) | 내용 |
 |------------|------|
-| 매일 07:00 | 날씨 + 금융 + 코인 + 뉴스 종합 |
-| 매일 12:30 | IT 뉴스 + 국내 뉴스 |
-| 평일 18:00 | 금융 시장 + 코인 시세 |
-| 월요일 09:00 | IT 기업 채용 정보 |
+| 매일 07:00 | 코인 + AI 분석 + 주식 + AI 추천 + 뉴스 + 테크블로그 |
+| 매일 12:30 | IT 뉴스 + 테크블로그 + 국내 뉴스 |
+| 평일 18:00 | 코인 + 주식 시세 + 하루 변동 분석 |
+| 월요일 09:00 | Frontend 중심 IT 기업 채용 정보 |
 
 ## 설치
 
@@ -86,12 +86,15 @@ Telegram에서 봇에게 메시지를 보내면 됩니다:
 
 | 메시지 예시 | 실행 스킬 |
 |------------|----------|
-| "날씨" / "서울 날씨" | weather-kr |
-| "환율" / "달러" / "코스피" | finance-kr |
 | "코인" / "비트코인" | crypto-kr |
+| "코인 추천" / "뭐 살까" | crypto-kr (AI 분석 포함) |
+| "주식" / "코스피" / "나스닥" | stocks-kr |
+| "주식 추천" / "종목 추천" | stocks-kr (AI 추천 포함) |
+| "삼성전자" / "테슬라" / "엔비디아" | stocks-kr |
 | "IT뉴스" / "해커뉴스" | tech-news |
+| "테크블로그" / "기술블로그" | tech-blog-kr |
 | "뉴스" / "오늘 소식" | news-summary |
-| "채용" / "취업" | jobs-kr |
+| "채용" / "취업" / "Frontend" | jobs-kr |
 | "브리핑" / "요약" | daily-digest |
 
 ## 프로젝트 구조
@@ -107,12 +110,12 @@ Telegram에서 봇에게 메시지를 보내면 됩니다:
 ├── .env.example           # 환경변수 템플릿
 ├── setup.sh               # 설치 스크립트
 ├── skills/
-│   ├── weather-kr/        # 날씨 (Open-Meteo)
-│   ├── finance-kr/        # 환율 + 주가 (ExchangeRate + Yahoo)
-│   ├── crypto-kr/         # 암호화폐 (Upbit)
+│   ├── crypto-kr/         # 암호화폐 시세 + AI 분석 (Upbit + CoinGecko)
+│   ├── stocks-kr/         # 주식 시세 + AI 추천 (Yahoo Finance)
 │   ├── tech-news/         # IT 뉴스 (Hacker News)
-│   ├── news-summary/      # 일반 뉴스 (RSS)
-│   ├── jobs-kr/           # 채용 정보
+│   ├── tech-blog-kr/      # 국내 테크블로그 (RSS 10개)
+│   ├── news-summary/      # 일반 뉴스 (RSS 5개 소스)
+│   ├── jobs-kr/           # 채용 정보 (빅테크 + 핀테크)
 │   └── daily-digest/      # 종합 브리핑
 └── cron/
     └── setup_cron.sh      # 크론 헬스체크 등록
@@ -141,11 +144,11 @@ cat ~/.openclaw/logs/gateway.err.log | tail -20      # 에러 로그
 ## 스크립트 개별 테스트
 
 ```bash
-bash skills/weather-kr/scripts/fetch_weather.sh | jq .
-bash skills/finance-kr/scripts/fetch_exchange.sh | jq .
-bash skills/finance-kr/scripts/fetch_stocks.sh | jq .
 bash skills/crypto-kr/scripts/fetch_crypto.sh | jq .
+bash skills/crypto-kr/scripts/fetch_crypto_analysis.sh | jq .
+bash skills/stocks-kr/scripts/fetch_stocks.sh | jq .
 bash skills/tech-news/scripts/fetch_hn.sh | jq .
+bash skills/tech-blog-kr/scripts/fetch_tech_blogs.sh | jq .
 bash skills/news-summary/scripts/fetch_news.sh | jq .
 bash skills/jobs-kr/scripts/fetch_jobs.sh | jq .
 ```
@@ -155,9 +158,7 @@ bash skills/jobs-kr/scripts/fetch_jobs.sh | jq .
 `.env` 파일에서 설정 변경:
 
 ```env
-WEATHER_CITIES=Seoul,Busan,Jeju          # 날씨 조회 도시
-CRYPTO_SYMBOLS=BTC,ETH,XRP,SOL,DOGE     # 관심 암호화폐
-STOCK_INDICES=^KS11,^KQ11,^GSPC,^IXIC   # 주가 지수
+CRYPTO_SYMBOLS=BTC,ETH,XRP,SOL,DOGE,ADA,AVAX,DOT,LINK,POL   # 관심 암호화폐
 ```
 
 ## 라이선스

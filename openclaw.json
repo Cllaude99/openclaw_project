@@ -9,10 +9,10 @@
   },
   "soul": "SOUL.md",
   "skills": [
-    "skills/weather-kr",
-    "skills/finance-kr",
     "skills/crypto-kr",
+    "skills/stocks-kr",
     "skills/tech-news",
+    "skills/tech-blog-kr",
     "skills/news-summary",
     "skills/jobs-kr",
     "skills/daily-digest"
@@ -23,7 +23,7 @@
       "schedule": "0 22 * * *",
       "timezone": "UTC",
       "skill": "daily-digest",
-      "message": "아침 브리핑을 시작해주세요. 날씨, 금융, 코인, 뉴스를 종합해서 보내주세요.",
+      "message": "아침 브리핑을 시작해주세요. 코인 시세와 AI 분석, 주식 시세와 AI 추천, 뉴스를 종합해서 보내주세요.",
       "comment": "KST 07:00 = UTC 22:00 (전날)"
     },
     {
@@ -31,15 +31,15 @@
       "schedule": "30 3 * * *",
       "timezone": "UTC",
       "skill": "daily-digest",
-      "message": "점심 뉴스를 보내주세요. IT 기술 뉴스와 국내 주요 뉴스를 중심으로 요약해주세요.",
+      "message": "점심 뉴스를 보내주세요. IT 기술 뉴스, 테크블로그 최신 글, 국내 주요 뉴스를 중심으로 요약해주세요.",
       "comment": "KST 12:30 = UTC 03:30"
     },
     {
-      "name": "market-close",
+      "name": "evening-market",
       "schedule": "0 9 * * 1-5",
       "timezone": "UTC",
       "skill": "daily-digest",
-      "message": "장 마감 요약을 보내주세요. 환율, KOSPI/KOSDAQ, 암호화폐 시세를 정리해주세요.",
+      "message": "저녁 시장 요약을 보내주세요. 코인 시세, 국내/해외 주식 시세와 하루 변동을 분석해주세요.",
       "comment": "KST 18:00 = UTC 09:00, 평일만"
     },
     {
@@ -47,7 +47,7 @@
       "schedule": "0 0 * * 1",
       "timezone": "UTC",
       "skill": "jobs-kr",
-      "message": "이번 주 IT 기업 채용 정보를 정리해서 보내주세요.",
+      "message": "이번 주 IT 기업 채용 정보를 정리해서 보내주세요. Frontend 포지션 중심으로 빅테크와 핀테크 기업을 안내해주세요.",
       "comment": "KST 월요일 09:00 = UTC 월요일 00:00"
     }
   ]
