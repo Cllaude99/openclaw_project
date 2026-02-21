@@ -9,9 +9,11 @@ set -euo pipefail
 
 # RSS 소스 목록 (이름|URL)
 RSS_SOURCES=(
-  "Google News KR|https://news.google.com/rss?hl=ko&gl=KR&ceid=KR:ko"
   "연합뉴스|https://www.yonhapnewstv.co.kr/browse/feed/"
   "매일경제|https://www.mk.co.kr/rss/30000001/"
+  "Google News KR|https://news.google.com/rss?hl=ko&gl=KR&ceid=KR:ko"
+  "한국경제|https://www.hankyung.com/feed/all-news"
+  "조선일보 IT|https://www.chosun.com/arc/outboundfeeds/rss/category/it-science/?outputType=xml"
 )
 
 MAX_ARTICLES=10
